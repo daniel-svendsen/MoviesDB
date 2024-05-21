@@ -10,16 +10,8 @@ public class Movie {
     private Long id;
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "director_id", nullable = false)
-    private Director director;
-
-    @ManyToMany
-    @JoinTable(
-        name = "movie_actor",
-        joinColumns = @JoinColumn(name = "movie_id"),
-        inverseJoinColumns = @JoinColumn(name = "actor_id"))
-    private Set<Actor> actors;
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieDirectorActor> movieDirectorActors;
 
     // Getters and setters
     public Long getId() {
@@ -38,19 +30,11 @@ public class Movie {
         this.title = title;
     }
 
-    public Director getDirector() {
-        return director;
+    public Set<MovieDirectorActor> getMovieDirectorActors() {
+        return movieDirectorActors;
     }
 
-    public void setDirector(Director director) {
-        this.director = director;
-    }
-
-    public Set<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(Set<Actor> actors) {
-        this.actors = actors;
+    public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
+        this.movieDirectorActors = movieDirectorActors;
     }
 }
