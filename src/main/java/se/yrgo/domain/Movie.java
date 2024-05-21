@@ -6,12 +6,16 @@ import java.util.Set;
 @Entity
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
 
-    // @OneToMany(mappedBy = "movie")
-    // private Set<MovieDirectorActor> movieDirectorActors;
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieDirectorActor> movieDirectorActors;
+
+    // No-argument constructor
+    public Movie() {
+    }
 
     // Getters and setters
     public Long getId() {
@@ -30,11 +34,11 @@ public class Movie {
         this.title = title;
     }
 
-    // public Set<MovieDirectorActor> getMovieDirectorActors() {
-    //     return movieDirectorActors;
-    // }
+    public Set<MovieDirectorActor> getMovieDirectorActors() {
+        return movieDirectorActors;
+    }
 
-    // public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
-    //     this.movieDirectorActors = movieDirectorActors;
-    // }
+    public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
+        this.movieDirectorActors = movieDirectorActors;
+    }
 }

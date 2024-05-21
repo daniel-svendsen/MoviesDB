@@ -1,6 +1,8 @@
 package se.yrgo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import se.yrgo.domain.Movie;
@@ -20,8 +22,13 @@ public class MovieController {
     }
 
     @PostMapping
-    public Movie createMovie(@RequestBody Movie movie) {
-        return movieList.saveMovie(movie);
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+        try {
+            Movie createdMovie = movieList.saveMovie(movie);
+            return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/{id}")
