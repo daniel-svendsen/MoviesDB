@@ -12,6 +12,13 @@ import java.util.List;
 public class DirectorList {
     @Autowired
     private DirectorRepository directorRepository;
+    private List<Director> directorRepositoryList;
+
+    public DirectorList() {}
+
+    public DirectorList(List<Director> directors) {
+        this.directorRepositoryList = directors;
+    }
 
     public List<Director> getAllDirectors() {
         return directorRepository.findAll();
