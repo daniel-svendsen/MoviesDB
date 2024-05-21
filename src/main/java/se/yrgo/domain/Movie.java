@@ -1,8 +1,7 @@
 package se.yrgo.domain;
 
-import java.util.Set;
-
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -11,7 +10,7 @@ public class Movie {
     private Long id;
     private String title;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
 
@@ -23,4 +22,35 @@ public class Movie {
     private Set<Actor> actors;
 
     // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(Set<Actor> actors) {
+        this.actors = actors;
+    }
 }
