@@ -5,19 +5,23 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "movie_director_actor")
 public class MovieDirectorActor {
+
     @EmbeddedId
     private MovieDirectorActorId id;
 
     @ManyToOne
     @MapsId("movieId")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     @ManyToOne
     @MapsId("directorId")
+    @JoinColumn(name = "director_id")
     private Director director;
 
     @ManyToOne
     @MapsId("actorId")
+    @JoinColumn(name = "actor_id")
     private Actor actor;
 
     // Constructors, getters, and setters

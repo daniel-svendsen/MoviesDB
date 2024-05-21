@@ -10,8 +10,8 @@ public class Movie {
     private Long id;
     private String title;
 
-    @OneToMany(mappedBy = "movie")
-    private Set<MovieDirectorActor> movieDirectorActors;
+    // @OneToMany(mappedBy = "movie")
+    // private Set<MovieDirectorActor> movieDirectorActors;
 
     // Getters and setters
     public Long getId() {
@@ -30,11 +30,11 @@ public class Movie {
         this.title = title;
     }
 
-    public Set<MovieDirectorActor> getMovieDirectorActors() {
-        return movieDirectorActors;
-    }
+    // public Set<MovieDirectorActor> getMovieDirectorActors() {
+    //     return movieDirectorActors;
+    // }
 
-    public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
-        this.movieDirectorActors = movieDirectorActors;
-    }
+    // public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
+    //     this.movieDirectorActors = movieDirectorActors;
+    // }
 }

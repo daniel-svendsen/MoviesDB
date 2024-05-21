@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 import java.util.Set;
 
@@ -15,14 +16,10 @@ public class Director {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "director")
-    private Set<Movie> movies;
+    @OneToMany(mappedBy = "director")
+    private Set<MovieDirectorActor> movieDirectorActors;
 
-    private Director() {}
-
-    @Override
-    public String toString() {
-        return "Director [id=" + id + ", name=" + name + ", movies=" + movies + "]";
+    private Director() {
     }
 
     // Getters and setters
@@ -41,5 +38,13 @@ public class Director {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<MovieDirectorActor> getMovieDirectorActors() {
+        return movieDirectorActors;
+    }
+
+    public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
+        this.movieDirectorActors = movieDirectorActors;
     }
 }

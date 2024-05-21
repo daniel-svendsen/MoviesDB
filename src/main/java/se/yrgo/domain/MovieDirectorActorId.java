@@ -6,11 +6,12 @@ import java.util.Objects;
 
 @Embeddable
 public class MovieDirectorActorId implements Serializable {
+
     private Long movieId;
     private Long directorId;
     private Long actorId;
 
-    // Constructors, getters, setters, equals, and hashCode methods
+    // Constructors
     public MovieDirectorActorId() {}
 
     public MovieDirectorActorId(Long movieId, Long directorId, Long actorId) {
@@ -19,6 +20,7 @@ public class MovieDirectorActorId implements Serializable {
         this.actorId = actorId;
     }
 
+    // Getters and setters
     public Long getMovieId() {
         return movieId;
     }
@@ -43,14 +45,15 @@ public class MovieDirectorActorId implements Serializable {
         this.actorId = actorId;
     }
 
+    // Override equals and hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieDirectorActorId that = (MovieDirectorActorId) o;
         return Objects.equals(movieId, that.movieId) &&
-                Objects.equals(directorId, that.directorId) &&
-                Objects.equals(actorId, that.actorId);
+               Objects.equals(directorId, that.directorId) &&
+               Objects.equals(actorId, that.actorId);
     }
 
     @Override
