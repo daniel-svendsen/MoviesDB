@@ -12,15 +12,30 @@ import java.util.List;
 @RequestMapping("/api/movies")
 public class MovieController {
     @Autowired
-    private MovieList movieService;
+    private MovieList movieList;
 
     @GetMapping
     public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+        return movieList.getAllMovies();
     }
 
     @PostMapping
     public Movie createMovie(@RequestBody Movie movie) {
-        return movieService.saveMovie(movie);
+        return movieList.saveMovie(movie);
+    }
+
+    @GetMapping("/{id}")
+    public Movie getMovieById(@PathVariable Long id) {
+        return movieList.getMovieById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+        return movieList.updateMovie(id, movie);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMovie(@PathVariable Long id) {
+        movieList.deleteMovie(id);
     }
 }
