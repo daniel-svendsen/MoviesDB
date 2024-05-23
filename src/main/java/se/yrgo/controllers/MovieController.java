@@ -1,48 +1,62 @@
 package se.yrgo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import se.yrgo.domain.Movie;
 import se.yrgo.rest.MovieList;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/movies")
+@Controller
+@RequestMapping("/website/movies")
 public class MovieController {
     @Autowired
     private MovieList movieList;
 
-    @GetMapping
-    public List<Movie> getAllMovies() {
-        return movieList.getAllMovies();
+    @RequestMapping(value = "/newMovie.html", method = RequestMethod.GET)
+    public ModelAndView renderNewMovieForm() {
+        Movie newMovie = new Movie();
+        return new ModelAndView("newMovie", "form", newMovie);
     }
 
-    @PostMapping
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        try {
-            Movie createdMovie = movieList.saveMovie(movie);
-            return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping(value = "/newMovie.html", method = RequestMethod.POST)
+    public String createMovie(Movie movie) {
+        movieList.saveMovie(movie);
+        return "redirect:/website/movies/list.html";
     }
 
-    @GetMapping("/{id}")
-    public Movie getMovieById(@PathVariable Long id) {
-        return movieList.getMovieById(id);
+    @RequestMapping(value = "/list.html", method = RequestMethod.GET)
+public ModelAndView getAllMovies() {
+    List<Movie> allMovies = movieList.getAllMovies();
+    System.out.println("Fetched movies: " + allMovies.size()); // Lägg till loggutskrift
+    return new ModelAndView("allMovies", "movies", allMovies);
+}
+
+    @RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
+    public ModelAndView getMovieById(@PathVariable Long id) {
+        Movie movie = movieList.getMovieById(id);
+        return new ModelAndView("movieInfo", "movie", movie);
     }
 
-    @PutMapping("/{id}")
-    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
-        return movieList.updateMovie(id, movie);
+    @RequestMapping(value = "/updateMovie/{id}", method = RequestMethod.GET)
+    public ModelAndView renderUpdateMovieForm(@PathVariable Long id) {
+        Movie movie = movieList.getMovieById(id);
+        return new ModelAndView("updateMovie", "form", movie);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable Long id) {
+    @RequestMapping(value = "/updateMovie/{id}", method = RequestMethod.POST)
+    public String updateMovie(@PathVariable Long id, Movie movie) {
+        movieList.updateMovie(id, movie);
+        return "redirect:/website/movies/list.html";
+    }
+
+    @RequestMapping(value = "/deleteMovie/{id}", method = RequestMethod.GET)
+    public String deleteMovie(@PathVariable Long id) {
         movieList.deleteMovie(id);
+        return "redirect:/website/movies/list.html";
     }
 }

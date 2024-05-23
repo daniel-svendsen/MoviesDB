@@ -13,7 +13,9 @@ public class MovieList {
     private MovieRepository movieRepository;
 
     public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+        List<Movie> movies = movieRepository.findAll();
+        System.out.println("Fetched movies: " + movies.size());
+        return movies;
     }
 
     public Movie getMovieById(Long id) {
@@ -21,6 +23,7 @@ public class MovieList {
     }
 
     public Movie saveMovie(Movie movie) {
+        System.out.println("Saving movie: " + movie.getTitle());
         return movieRepository.save(movie);
     }
 
@@ -29,6 +32,7 @@ public class MovieList {
             throw new RuntimeException("Movie not found");
         }
         movie.setId(id);
+        System.out.println("Updating movie with id: " + id);
         return movieRepository.save(movie);
     }
 
@@ -36,6 +40,7 @@ public class MovieList {
         if (!movieRepository.existsById(id)) {
             throw new RuntimeException("Movie not found");
         }
+        System.out.println("Deleting movie with id: " + id);
         movieRepository.deleteById(id);
     }
 }
