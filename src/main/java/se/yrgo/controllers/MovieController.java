@@ -30,11 +30,11 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/list.html", method = RequestMethod.GET)
-public ModelAndView getAllMovies() {
-    List<Movie> allMovies = movieList.getAllMovies();
-    System.out.println("Fetched movies: " + allMovies.size()); // Lägg till loggutskrift
-    return new ModelAndView("allMovies", "movies", allMovies);
-}
+    public ModelAndView getAllMovies() {
+        List<Movie> allMovies = movieList.getAllMovies();
+        System.out.println("Fetched movies: " + allMovies.size()); // Lägg till loggutskrift
+        return new ModelAndView("allMovies", "movies", allMovies);
+    }
 
     @RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
     public ModelAndView getMovieById(@PathVariable Long id) {
