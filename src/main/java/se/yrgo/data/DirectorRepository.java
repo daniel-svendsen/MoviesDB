@@ -7,5 +7,5 @@ import se.yrgo.domain.Director;
 
 @Repository
 public interface DirectorRepository extends JpaRepository<Director, Long> {
-    public Director findByName(String name);
+    //public Director findByName(String name);
 }

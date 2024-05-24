@@ -14,7 +14,9 @@ public class DirectorList {
     private DirectorRepository directorRepository;
 
     public List<Director> getAllDirectors() {
-        return directorRepository.findAll();
+        List<Director> directors = directorRepository.findAll();
+        System.out.println("Fetched directors: " + directors);
+        return directors;
     }
 
     public Director getDirectorById(Long id) {
@@ -22,6 +24,7 @@ public class DirectorList {
     }
 
     public Director saveDirector(Director director) {
+        System.out.println("Saving director: " + director.getName());
         return directorRepository.save(director);
     }
 
@@ -30,6 +33,7 @@ public class DirectorList {
             throw new RuntimeException("Updating Director: Director not Found!");
         }
         director.setId(id);
+        System.out.println("Updating director with id: " + id);
         return directorRepository.save(director);
     }
 
@@ -37,6 +41,7 @@ public class DirectorList {
         if(!directorRepository.existsById(id)) {
             throw new RuntimeException("Deleting Director: Director not Found!");
         }
+        System.out.println("Deleting director with id " + id);
         directorRepository.deleteById(id);
     }
 }
