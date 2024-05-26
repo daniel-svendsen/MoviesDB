@@ -13,6 +13,22 @@ public class DirectorList {
     @Autowired
     private DirectorRepository directorRepository;
 
+    private List<Director> directors;
+
+    public DirectorList() {}
+
+    public DirectorList(List<Director> directors) {
+        this.directors = directors;
+    }
+
+    public List<Director> getDirectors() {
+        return directors;
+    }
+
+    public void setVehicles(List<Director> directors) {
+        this.directors = directors;
+    }
+
     public List<Director> getAllDirectors() {
         List<Director> directors = directorRepository.findAll();
         System.out.println("Fetched directors: " + directors);

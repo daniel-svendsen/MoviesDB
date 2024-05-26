@@ -47,4 +47,9 @@ public class Director {
     public void setMovieDirectorActors(Set<MovieDirectorActor> movieDirectorActors) {
         this.movieDirectorActors = movieDirectorActors;
     }
+
+    @Override
+    public String toString() {
+        return "Our director, " + this.name + ".";
+    }
 }

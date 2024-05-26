@@ -1,19 +1,26 @@
 package se.yrgo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import se.yrgo.data.DirectorRepository;
 import se.yrgo.domain.Director;
 import se.yrgo.rest.DirectorList;
 
 import java.util.List;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("/website/directors")
 public class DirectorController {
     @Autowired
     private DirectorList directorList;
+
+    // I'm testing this because this is what Nahid used.
+    @Autowired
+    private DirectorRepository directorRepository;
 
     @RequestMapping(value = "/newDirector.html", method = RequestMethod.GET)
     public ModelAndView renderNewDirectorForm() {
@@ -56,6 +63,12 @@ public class DirectorController {
     public String deleteDirector(@PathVariable Long id) {
         directorList.deleteDirector(id);
         return "redirect:/website/directors/list.html";
+    }
+
+    @RequestMapping(value = "/director/{name}")
+    public ModelAndView showDirectorByName(@PathVariable("name") String name) {
+        Director director = directorRepository.findByName(name);
+        return new ModelAndView("directorInfo", "director", director);
     }
 }
 
