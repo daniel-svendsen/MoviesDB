@@ -1,8 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>All Movies</title>
+    <title>All Actors</title>
     <style>
         :root {
             --background-color: #1a1a1a;
@@ -77,14 +77,13 @@
     </style>
 </head>
 <body>
-    <h2>All Movies</h2>
-    <ul>
-        <c:forEach var="movie" items="${movies}">
-            <li>${movie.title}</li>
-        </c:forEach>
-    </ul>
-    <a href="newMovie.html">Add New Movie</a>
-    <br>
-    <a href="/home.html" class="back-button"><i class="fas fa-arrow-left icon"></i>Back to Home</a>
+<h1>Actors</h1>
+<ul>
+    <c:forEach var="actor" items="${actors}">
+        <li>${actor.name} - Age: ${actor.age != null ? actor.age : 'unknown'}</li>
+    </c:forEach>
+</ul>
+
+<a href="/home.html">Back to home</a>
 </body>
 </html>

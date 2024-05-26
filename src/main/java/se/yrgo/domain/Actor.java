@@ -1,24 +1,40 @@
 package se.yrgo.domain;
 
 import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
+
+    @Column(nullable = false)
     private String name;
+    private Integer age;
 
     @OneToMany(mappedBy = "actor")
     private Set<MovieDirectorActor> movieDirectorActors;
 
-    // Getters and setters
-    public Long getId() {
+    // No-argument constructor
+    public Actor() {
+    }
+
+    public Actor(String name) {
+        this.name = name;
+    }
+
+    public Actor(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -28,6 +44,14 @@ public class Actor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Set<MovieDirectorActor> getMovieDirectorActors() {

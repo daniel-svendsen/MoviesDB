@@ -1,23 +1,28 @@
 package se.yrgo.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import se.yrgo.data.ActorRepository;
 import se.yrgo.domain.Actor;
 
 import java.util.List;
 
-@Service
 public class ActorList {
-    @Autowired
-    private ActorRepository actorRepository;
+    private List<Actor> actors;
 
-    public List<Actor> getAllActors() {
-        return actorRepository.findAll();
+    public ActorList() {
     }
 
-    public Actor saveActor(Actor actor) {
-        return actorRepository.save(actor);
+    public ActorList(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public int getNumberOfActors() {
+        return actors.size();
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
     }
 }

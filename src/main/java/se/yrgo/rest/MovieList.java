@@ -2,6 +2,8 @@ package se.yrgo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.yrgo.data.MovieRepository;
 import se.yrgo.domain.Movie;
 
@@ -9,12 +11,18 @@ import java.util.List;
 
 @Service
 public class MovieList {
+    private static final Logger logger = LoggerFactory.getLogger(MovieList.class);
+
+    private final MovieRepository movieRepository;
+
     @Autowired
-    private MovieRepository movieRepository;
+    public MovieList(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public List<Movie> getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
-        System.out.println("Fetched movies: " + movies.size());
+        logger.info("Fetched movies: {}", movies.size());
         return movies;
     }
 
@@ -23,7 +31,7 @@ public class MovieList {
     }
 
     public Movie saveMovie(Movie movie) {
-        System.out.println("Saving movie: " + movie.getTitle());
+        logger.info("Saving movie: {}", movie.getTitle());
         return movieRepository.save(movie);
     }
 
@@ -32,7 +40,7 @@ public class MovieList {
             throw new RuntimeException("Movie not found");
         }
         movie.setId(id);
-        System.out.println("Updating movie with id: " + id);
+        logger.info("Updating movie with id: {}", id);
         return movieRepository.save(movie);
     }
 
@@ -40,7 +48,7 @@ public class MovieList {
         if (!movieRepository.existsById(id)) {
             throw new RuntimeException("Movie not found");
         }
-        System.out.println("Deleting movie with id: " + id);
+        logger.info("Deleting movie with id: {}", id);
         movieRepository.deleteById(id);
     }
 }

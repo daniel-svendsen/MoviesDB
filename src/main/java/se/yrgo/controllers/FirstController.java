@@ -10,6 +10,6 @@ public class FirstController {
     @RequestMapping("/home.html")
     public ModelAndView firstPage() {
         Date dateAndTime = new Date();
-        return new ModelAndView("welcome", "dateAndTime" , dateAndTime);
+        return new ModelAndView("home", "dateAndTime" , dateAndTime);
     }
 }
