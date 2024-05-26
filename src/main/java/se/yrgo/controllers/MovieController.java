@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.yrgo.domain.Movie;
 import se.yrgo.rest.MovieList;
 
@@ -14,8 +16,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/website/movies")
 public class MovieController {
+    private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
+
+    private final MovieList movieList;
+
     @Autowired
-    private MovieList movieList;
+    public MovieController(MovieList movieList) {
+        this.movieList = movieList;
+    }
 
     @RequestMapping(value = "/newMovie.html", method = RequestMethod.GET)
     public ModelAndView renderNewMovieForm() {
@@ -32,7 +40,7 @@ public class MovieController {
     @RequestMapping(value = "/list.html", method = RequestMethod.GET)
     public ModelAndView getAllMovies() {
         List<Movie> allMovies = movieList.getAllMovies();
-        System.out.println("Fetched movies: " + allMovies.size()); // Lägg till loggutskrift
+        logger.info("Fetched movies: {}", allMovies.size());
         return new ModelAndView("allMovies", "movies", allMovies);
     }
 
