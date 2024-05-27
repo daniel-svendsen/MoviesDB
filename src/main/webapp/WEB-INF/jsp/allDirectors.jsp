@@ -1,13 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieDB - Welcome</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>${appName} - All Directors</title>
     <style>
         :root {
             --background-color: #1a1a1a;
@@ -82,26 +79,14 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to MovieDB</h1>
-    </header>
-    <main>
-        <div class="date-and-time">${dateAndTime}</div>
-        <h3>See all...</h3>
-        <nav>
-            <ul aria-label="See all">
-                <li><a href="website/movies/list.html"><i class="fas fa-film icon"></i>Movies</a></li>
-                <li><a href="website/actors/list.html"><i class="fas fa-user icon"></i>Actors</a></li>
-                <li><a href="website/directors/list.html"><i class="fas fa-video icon"></i>Directors</a></li>
-            </ul>
-        </nav>
-
-        <h3>Create...</h3>
-        <ul aria-label="Create">
-            <li><a href="website/movies/newMovie.html"><i class="fas fa-plus icon"></i>New Movie</a></li>
-            <li><a href="website/actors/addActor.html"><i class="fas fa-plus icon"></i>New Actor</a></li>
-            <li><a href="website/directors/newDirector.html"><i class="fas fa-plus icon"></i>New Director</a></li>
-        </ul>
-    </main>
+<h2>All Directors</h2>
+<ul>
+    <c:forEach var="director" items="${directors}">
+        <li>${director.name}</li>
+    </c:forEach>
+</ul>
+<a href="newDirector.html">Add New Director</a>
+<br>
+<a href="/home.html" class="back-button"><i class="fas fa-arrow-left icon">Back to Home</i></a>
 </body>
 </html>

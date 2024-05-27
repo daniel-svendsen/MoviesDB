@@ -55,3 +55,8 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/maven
+
+
+# Temporarily preventing my Database and gitignore from going to the git repository
+.gitignore
+.Database
