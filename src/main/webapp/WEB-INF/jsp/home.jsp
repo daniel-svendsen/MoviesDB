@@ -100,7 +100,7 @@
         <ul aria-label="Create">
             <li><a href="website/movies/newMovie.html"><i class="fas fa-plus icon"></i>New Movie</a></li>
             <li><a href="website/actors/addActor.html"><i class="fas fa-plus icon"></i>New Actor</a></li>
-            <li><a href="#"><i class="fas fa-plus icon"></i>New Director</a></li>
+            <li><a href="website/directors/newDirector.html"><i class="fas fa-plus icon"></i>New Director</a></li>
         </ul>
     </main>
 </body>
