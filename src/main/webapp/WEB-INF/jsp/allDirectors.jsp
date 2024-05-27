@@ -10,7 +10,7 @@
             --background-color: #1a1a1a;
             --header-background-color: #333;
             --header-text-color: #fff;
-            --main-text-color: #9fcaaa;
+            --main-text-color: #e74c3c;
             --link-color: #e74c3c;
             --link-hover-color: #c0392b;
             --font-family-main: 'Arial', sans-serif;

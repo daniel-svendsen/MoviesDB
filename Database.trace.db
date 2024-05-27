@@ -712,3 +712,6 @@ Caused by: org.h2.mvstore.MVStoreException: Reading from file sun.nio.ch.FileCha
 Caused by: java.io.EOFException
 	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:443)
 	... 30 more
+2024-05-27 13:45:17.461085+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]TITLE"; expected "TRUNCATE"; SQL statement:
+TITLE [42001-224]
