@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import se.yrgo.data.DirectorRepository;
 import se.yrgo.domain.Director;
-import se.yrgo.rest.DirectorList;
 
 import java.util.List;
 
@@ -22,11 +21,33 @@ public class DirectorController {
     @Autowired
     private DirectorRepository directorRepository;
 
-    @RequestMapping(value = "/newDirector.html", method = RequestMethod.GET)
-    public ModelAndView renderNewDirectorForm() {
-        Director newDirector = new Director();
-        return new ModelAndView("newDirector", "form", newDirector);
+    @RequestMapping(value = "/list.html", method = RequestMethod.GET)
+    public ModelAndView getAllDirectors() {
+        List<Director> allDirectors = directorRepository.findAll();
+        System.out.println("Fetched directors: " + allDirectors.size());
+        return new ModelAndView("allDirectors", "directors", allDirectors);
     }
+
+    @GetMapping(value = "newDirector.html")
+    public ModelAndView renderNewDirectorForm() {
+        return new ModelAndView("newDirector");
+    }
+
+    @RequestMapping(value = "/newDirector.html", method = RequestMethod.POST)
+    public ModelAndView createDirector(@RequestParam("name") String name) {
+        Director newDirector = new Director(name);
+        directorRepository.save(newDirector);
+        return new ModelAndView("redirect:/website/directors/list.html");
+    }
+
+    /*
+    @RequestMapping(value = "/list.html", method = RequestMethod.GET)
+    public ModelAndView getAllDirectors() {
+        List<Director> allDirectors = directorList.getAllDirectors();
+        System.out.println("Fetched directors: " + allDirectors.size());
+        return new ModelAndView("allDirectors", "directors", allDirectors);
+    }
+    */
 
 /*    @RequestMapping(value = "/newDirector.html", method = RequestMethod.POST)
     public String createDirector(Director director) {

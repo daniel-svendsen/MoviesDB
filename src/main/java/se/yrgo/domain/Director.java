@@ -19,7 +19,10 @@ public class Director {
     private Set<MovieDirectorActor> movieDirectorActors;
 
     // Empty constructor
-    public Director() {
+    public Director() {}
+
+    public Director(String name) {
+        this.name = name;
     }
 
     // Getters and setters

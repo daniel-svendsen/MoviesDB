@@ -1,9 +1,5 @@
 package se.yrgo.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import se.yrgo.data.DirectorRepository;
 import se.yrgo.domain.Director;
 
 import java.util.List;
@@ -20,6 +16,14 @@ public class DirectorList {
 
     public List<Director> getAllDirectors() {
         return directors;
+    }
+
+    public int getNumberOfDirectors() {
+        return directors.size();
+    }
+
+    public void setDirectors(List<Director> directors) {
+        this.directors = directors;
     }
 
     /*public Director getDirectorById(Long id) {
