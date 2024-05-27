@@ -15,8 +15,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/website/directors")
 public class DirectorController {
-    @Autowired
-    private DirectorList directorList;
+   /* @Autowired
+    private DirectorList directorList;*/
 
     // I'm testing this because this is what Nahid used.
     @Autowired
@@ -28,7 +28,7 @@ public class DirectorController {
         return new ModelAndView("newDirector", "form", newDirector);
     }
 
-    @RequestMapping(value = "/newDirector.html", method = RequestMethod.POST)
+/*    @RequestMapping(value = "/newDirector.html", method = RequestMethod.POST)
     public String createDirector(Director director) {
         directorList.saveDirector(director);
         return "redirect:/website/directors/list.html";
@@ -63,7 +63,7 @@ public class DirectorController {
     public String deleteDirector(@PathVariable Long id) {
         directorList.deleteDirector(id);
         return "redirect:/website/directors/list.html";
-    }
+    }*/
 
     @RequestMapping(value = "/director/{name}")
     public ModelAndView showDirectorByName(@PathVariable("name") String name) {

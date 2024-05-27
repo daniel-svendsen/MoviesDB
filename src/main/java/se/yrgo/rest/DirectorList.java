@@ -8,10 +8,7 @@ import se.yrgo.domain.Director;
 
 import java.util.List;
 
-@Service
 public class DirectorList {
-    @Autowired
-    private DirectorRepository directorRepository;
 
     private List<Director> directors;
 
@@ -21,21 +18,11 @@ public class DirectorList {
         this.directors = directors;
     }
 
-    public List<Director> getDirectors() {
-        return directors;
-    }
-
-    public void setVehicles(List<Director> directors) {
-        this.directors = directors;
-    }
-
     public List<Director> getAllDirectors() {
-        List<Director> directors = directorRepository.findAll();
-        System.out.println("Fetched directors: " + directors);
         return directors;
     }
 
-    public Director getDirectorById(Long id) {
+    /*public Director getDirectorById(Long id) {
         return directorRepository.findById(id).orElseThrow(() -> new RuntimeException("Searching for Id: Director not Found!"));
     }
 
@@ -51,13 +38,13 @@ public class DirectorList {
         director.setId(id);
         System.out.println("Updating director with id: " + id);
         return directorRepository.save(director);
-    }
+    }*/
 
-    public void deleteDirector(Long id) {
+ /*   public void deleteDirector(Long id) {
         if(!directorRepository.existsById(id)) {
             throw new RuntimeException("Deleting Director: Director not Found!");
         }
         System.out.println("Deleting director with id " + id);
         directorRepository.deleteById(id);
-    }
+    }*/
 }
